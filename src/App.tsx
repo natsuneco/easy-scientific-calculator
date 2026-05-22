@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { MathfieldElement } from 'mathlive';
 import { ComputeEngine } from '@cortex-js/compute-engine';
+import { MathfieldElement } from 'mathlive';
+import { useEffect, useRef, useState } from 'react';
 import { useWebHaptics } from 'web-haptics/react';
 
 const ce = new ComputeEngine();
