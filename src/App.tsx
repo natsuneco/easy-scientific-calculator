@@ -101,8 +101,21 @@ export default function App() {
     // Handle power (x^n): insert empty superscript and place cursor inside
     if (action === 'power') {
       mf.executeCommand(['insert', '^{}']);
-      // Move caret left into the braces so next input goes into the exponent
-      mf.executeCommand(['move', 'left']);
+      // Move caret into the superscript field so next input goes into the exponent
+      mf.executeCommand('moveToSuperscript');
+      if (isShift) setIsShift(false);
+      mf.focus();
+      return;
+    }
+
+    // Handle engineering exponent (×10^n): insert ×10^{} and place caret inside
+    if (action === 'exp') {
+      if (isShift) {
+        mf.executeCommand(['insert', '\\pi']);
+      } else {
+        mf.executeCommand(['insert', '\\times 10^{}']);
+        mf.executeCommand('moveToSuperscript');
+      }
       if (isShift) setIsShift(false);
       mf.focus();
       return;
@@ -118,7 +131,6 @@ export default function App() {
     else if (action === 'sqrt') inputStr = isShift ? '\\sqrt[3]{' : '\\sqrt{';
     else if (action === 'sqr') inputStr = isShift ? '^3' : '^2';
     else if (action === 'ans') inputStr = 'Ans';
-    else if (action === 'exp') inputStr = isShift ? '\\pi' : '\\times 10^';
     else if (action === 'power') inputStr = '^';
     else if (action === '.') inputStr = isShift ? 'e' : '.';
     else if (action === '×') inputStr = '\\times ';
