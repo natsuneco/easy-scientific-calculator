@@ -36,7 +36,13 @@ export default function App() {
     const ce = ceRef.current;
     try {
       // 角度モードの設定
-      ce.angleMode = angleMode;
+      const modeMap: Record<string, "deg" | "rad" | "grad"> = {
+        deg: "deg",
+        rad: "rad",
+        grad: "grad"
+      };
+      (ce as any).angularUnit = modeMap[angleMode];
+
       // Ansを代入するためにスコープに変数を設定
       ce.assign('Ans', ce.parse(ans));
       ce.assign('PreAns', ce.parse(preAns));
@@ -113,6 +119,35 @@ export default function App() {
     
     const mf = mfRef.current;
     if (!mf) return;
+
+    // 計算結果が表示されている状態での次の入力処理
+    if (result !== '' || hasError) {
+      if (action === 'ac') {
+        // ACは通常通り全クリア
+      } else if (action === 'shift') {
+        // SHIFTは状態を切り替えるだけで表示は維持
+      } else if (action === '=') {
+        // = は何もしない（または再計算）
+      } else if (action === 'del') {
+        // DELは結果表示を消して、元の数式の末尾から編集を再開
+        setResult('');
+        setHasError(false);
+        mf.focus();
+        return;
+      } else {
+        // その他の入力（数値、演算子、関数など）
+        // 以前の数式を Ans に置き換えて入力を継続
+        mf.setValue('\\operatorname{Ans}');
+        setExpression('\\operatorname{Ans}');
+        setResult('');
+        setHasError(false);
+        // もし押されたボタン自体が Ans の場合は、置き換えた時点で完了
+        if (action === 'ans') {
+          mf.focus();
+          return;
+        }
+      }
+    }
 
     if (action === 'ac') {
       mf.setValue('');
