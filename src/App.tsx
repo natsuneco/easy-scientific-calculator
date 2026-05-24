@@ -293,11 +293,11 @@ export default function App() {
   ];
 
   return (
-    <div className="bg-[#f9fafb] dark:bg-[#000000] w-full h-[100dvh] text-gray-900 dark:text-gray-100 font-sans flex justify-center overflow-hidden selection:bg-transparent transition-colors duration-300">
+    <div className="bg-[#f9fafb] dark:bg-[#000000] w-full h-dvh text-gray-900 dark:text-gray-100 font-sans flex justify-center overflow-hidden selection:bg-transparent transition-colors duration-300">
       <div className="w-full max-w-md h-full flex flex-col px-3 sm:px-6 py-4 pb-6">
           
           {/* ディスプレイエリア */}
-          <div className="flex-none h-[22%] min-h-[120px] flex flex-col justify-end relative px-2 py-2 mb-2">
+          <div className="flex-none h-[22%] min-h-30 flex flex-col justify-end relative px-2 py-2 mb-2">
             {/* 左側インジケーター */}
             <div className="absolute top-0 left-0 flex gap-3 items-center">
               {isShift && <span className="text-blue-600 dark:text-blue-400 text-[10px] font-bold tracking-widest animate-pulse">SHIFT</span>}
