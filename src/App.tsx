@@ -52,9 +52,10 @@ export default function App() {
       // 構文エラーや入力不足のチェック
       if (!parsed.isValid) {
         const firstError = parsed.errors[0];
-        const cause = firstError.ops?.[0]?.toString() || "";
-        if (cause.includes('missing')) return { value: "Input Incomplete", isError: true };
-        if (cause.includes('unexpected-token')) return { value: "Syntax Error", isError: true };
+        // JSON表現にシリアライズして詳細を確認
+        const errorJson = JSON.stringify(firstError);
+        if (errorJson.includes('missing')) return { value: "Input Incomplete", isError: true };
+        if (errorJson.includes('unexpected-token')) return { value: "Syntax Error", isError: true };
         return { value: "Invalid Syntax", isError: true };
       }
 
