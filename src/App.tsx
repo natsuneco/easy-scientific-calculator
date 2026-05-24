@@ -348,7 +348,7 @@ export default function App() {
               >
               </math-field>
             </div>
-            <div className={`text-right text-5xl sm:text-7xl font-light break-all tracking-tighter transition-colors ${hasError ? 'text-red-500' : 'text-gray-900 dark:text-white'}`}>
+            <div className={`w-full overflow-x-auto overflow-y-hidden custom-scrollbar whitespace-nowrap text-left text-5xl sm:text-7xl font-light tracking-tighter transition-colors ${hasError ? 'text-red-500' : 'text-gray-900 dark:text-white'}`}>
               {result}
             </div>
           </div>

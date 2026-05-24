@@ -47,3 +47,18 @@ math-field::part(menu-toggle),
 math-field::part(virtual-keyboard-toggle) {
   display: none;
 }
+
+/* Custom minimal scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #333333;
+}
