@@ -223,8 +223,8 @@ export default function App() {
     if (action === 'sin') inputStr = isShift ? '\\arcsin(' : '\\sin(';
     else if (action === 'cos') inputStr = isShift ? '\\arccos(' : '\\cos(';
     else if (action === 'tan') inputStr = isShift ? '\\arctan(' : '\\tan(';
-    else if (action === 'log') inputStr = '\\log(';
-    else if (action === 'ln') inputStr = '\\ln(';
+    else if (action === '(') inputStr = isShift ? '\\log(' : '(';
+    else if (action === ')') inputStr = isShift ? '\\ln(' : ')';
     else if (action === 'sqrt') inputStr = isShift ? '\\sqrt[3]{' : '\\sqrt{';
     else if (action === 'sqr') inputStr = isShift ? '^3' : '^2';
     else if (action === 'ans') inputStr = isShift ? '\\operatorname{PreAns}' : '\\operatorname{Ans}';
@@ -264,8 +264,8 @@ export default function App() {
     { label: 'sin', shiftLabel: <span>sin<sup>-1</sup></span>, action: 'sin', type: 'func' },
     { label: 'cos', shiftLabel: <span>cos<sup>-1</sup></span>, action: 'cos', type: 'func' },
     { label: 'tan', shiftLabel: <span>tan<sup>-1</sup></span>, action: 'tan', type: 'func' },
-    { label: '(', action: '(', type: 'func' },
-    { label: ')', action: ')', type: 'func' },
+    { label: '(', shiftLabel: 'log', action: '(', type: 'func' },
+    { label: ')', shiftLabel: 'ln', action: ')', type: 'func' },
     // 3行目: テンキー上段
     { label: '7', action: '7', type: 'num' },
     { label: '8', action: '8', type: 'num' },
